@@ -5,23 +5,25 @@
 // Hint: For your algorithm, you might want to think about a prefix and use that to create the new words. 
 // For example, given east, use e as a prefix and you would place e in front of all six permutations of ast — ast, ats, sat, sta, tas, and tsa. 
 // This will give you the words east, eats, esat, esta, etas, and etsa. Continue this way until you find all the anagrams for east. There should be 24 of them.
-
-const anagram = function(str) {
-
+let array = [];
+const anagram = function(str, prefix = '') {
+  
   //base case
   if (str.length <= 1) {
-    return str;
-  }
-
-  let array = [];
+    array.push(prefix+str);
+  } else {
   //general case
-  for(let i = 0; i < str.length; i++) {
-    array.push(str[i] + anagram(str.slice(0,i) + str.slice(i+1)));
+    for(let i = 0; i < str.length; i++) {
+      const current = str.slice(i,i + 1);
+      const before = str.slice(0, i);
+      const after = str.slice( i+1 );
+      anagram(before+after, prefix+current);
+    }
   }
 
   return array;
 };
 
-console.log(anagram('tea'));
+console.log(anagram('test'));
 
 
