@@ -7,14 +7,14 @@
 const fib = function(num, holder=[1, 1]) {
   //base
   if(num === 1) {
-     return [1];
+    return [1];
   }
 
   //general
   // console.log(holder)
   const combo = holder[holder.length-1] + holder[holder.length-2];
   return [combo, ...fib(num - 1, [...holder, combo])];
-}
+};
 
 // console.log(fib(7));
 
@@ -24,6 +24,6 @@ const fib2 = function(num) {
   }
 
   return fib2(num - 1) + fib2(num - 2);
-}
+};
 
 console.log(fib2(4));
